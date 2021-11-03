@@ -59,6 +59,7 @@ body {
   
 }
 
+
 #welcome::before {
   content: "";
   position: absolute;
@@ -80,27 +81,87 @@ body {
 }
 
 #welcome button {
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
-  width: 200px;
-  z-index: 2;
-  height: 200px;
-  border: 8px solid #97cafafe;
-  border-radius: 50%;
-  
+  width: 100px;
+  height: 90px;
+  z-index: 3;
   font-weight: 800;
   color: #fc4445;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  
-  background-color:#55bcc9;
   transform: translate(-50%, -50%);
-  transition: transform 0.5s;  
+  transition: transform 0.5s;   
 }
 
+
+#welcome button:before, #welcome button:after { 
+  position: absolute;
+  content: ""; 
+  left: 50px; 
+  top: 0; 
+  width: 50px; 
+  height: 80px; 
+  border-radius: 50px 50px 0 0; 
+  transform: rotate(-45deg); 
+  transform-origin: 0 100%; 
+  
+  border: 8px solid #97cafafe;
+  background-color:#55bcc9;
+}
+
+
+@keyframes textBlink {
+  0% {color: #3feee6 ;}
+  40% {color: #97cafafe;}
+  50% {color: #fc4445;}
+  90% {color: #3feee6;}
+}
+
+#welcome button:after {
+  content: "Click me";
+  left: -15px; 
+  transform: rotate(45deg); 
+  transform-origin :100% 100%;
+  animation-name: textBlink;
+  animation-fill-mode: forwards;
+  animation-duration: 0.7s;
+  animation-iteration-count: infinite;
+}
+
+#welcome button.clicked:after {
+  content: "666";
+}  
+
 #welcome button:hover {
-  transform: translate(-50%, -50%) scale(1.2) rotate(180deg);
+  transform: translate(-50%, -50%) scale(2) rotate(720deg);
+}
+
+#catImg {
+ opacity: 0;
+ position: fixed;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+}
+
+@keyframes imgBlink {
+  0% {
+      opacity:1;
+  }
+  50% {
+      opacity:0;
+  }
+  100% {
+      opacity:1;
+  }
+}
+
+
+#catImg.clicked {
+  animation: imgBlink normal 200ms infinite ease-in-out;
+  z-index: 2;
 }
 
 
